@@ -1,9 +1,45 @@
 public class Basket {
 
-    private static int count = 0;
+    public static int count;
+
+    private static final int basketCount = 0;
     private String items = "";
     private int totalPrice = 0;
     private int limit;
+
+    public static int totalCost;
+
+    public static int itemCount;
+
+    private static class AllBaskets {
+       public static int itemCount;
+       public static int cost;
+
+       public static int count;
+    }
+
+    public void basketIncrease(String name, int price, int count) {
+        AllBaskets.itemCount += count;
+        AllBaskets.cost += price * count;
+    }
+
+    public static int getItemCountForAllBaskets() {
+        return AllBaskets.itemCount;
+    }
+
+    public static int getCostForAllBaskets() {
+        return AllBaskets.cost;
+    }
+
+    public static double averagePrice() {
+        int allBasketsAveragePrice = AllBaskets.cost / AllBaskets.itemCount;
+        return allBasketsAveragePrice;
+    }
+
+    public static double averageBasketPrice() {
+        double averageBasketPrice = AllBaskets.cost / AllBaskets.count;
+        return averageBasketPrice;
+    }
 
     public Basket() {
         increaseCount(1);
@@ -75,4 +111,6 @@ public class Basket {
             System.out.println(items);
         }
     }
+
 }
+
