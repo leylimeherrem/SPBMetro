@@ -1,44 +1,47 @@
 public class Basket {
 
     public static int count;
-
-    private static final int basketCount = 0;
-    private String items = "";
-    private int totalPrice = 0;
+    private static String items = "";
+    private static int totalPrice = 0;
     private int limit;
 
-    public static int totalCost;
+    public static int totalItems;
 
-    public static int itemCount;
+    public static int allBasketsCost;
 
-    private static class AllBaskets {
-       public static int itemCount;
-       public static int cost;
-
-       public static int count;
+    public static void increaseTotalItems(int count) {
+    Basket.totalItems = totalItems + count;
     }
 
-    public void basketIncrease(String name, int price, int count) {
-        AllBaskets.itemCount += count;
-        AllBaskets.cost += price * count;
+    public static void increaseTotalCost(int totalPrice) {
+        Basket.allBasketsCost = allBasketsCost + totalPrice;
     }
 
-    public static int getItemCountForAllBaskets() {
-        return AllBaskets.itemCount;
+    //метод расчёта средней цены товара во всех корзинах
+    public static double averageItemPrice() {
+        return allBasketsCost / totalItems;
     }
 
-    public static int getCostForAllBaskets() {
-        return AllBaskets.cost;
-    }
 
-    public static double averagePrice() {
-        int allBasketsAveragePrice = AllBaskets.cost / AllBaskets.itemCount;
-        return allBasketsAveragePrice;
-    }
-
+    //метод расчёта средней стоимости корзины
     public static double averageBasketPrice() {
-        double averageBasketPrice = AllBaskets.cost / AllBaskets.count;
-        return averageBasketPrice;
+        return allBasketsCost / Basket.count;
+    }
+
+    public static int getTotalItems() {
+        return totalItems;
+    }
+
+    public static void setTotalItems(int totalItems) {
+        Basket.totalItems =+ totalItems;
+    }
+
+    public static int getAllBasketsCost() {
+        return allBasketsCost;
+    }
+
+    public static void setAllBasketsCost(int allBasketsCost) {
+        Basket.allBasketsCost = allBasketsCost;
     }
 
     public Basket() {
