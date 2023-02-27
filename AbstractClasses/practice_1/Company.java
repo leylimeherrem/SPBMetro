@@ -1,6 +1,11 @@
 import java.util.*;
 
 public class Company {
+    private int income;
+
+    public Company(int income) {
+        this.income = income;
+    }
     private final List<Employee> employees = new ArrayList<Employee>();
 
     public void hire(Employee employee) {
@@ -15,8 +20,9 @@ public class Company {
         employees.remove(employee);
     }
 
-    public static int getIncome() {
-        return 15000000;
+    public int getIncome() {
+
+        return this.income;
     }
 
     public List<Employee> getTopSalaryStaff(int count) {

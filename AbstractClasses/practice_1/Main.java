@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Company company = new Company();
+        Company company = new Company(15000000);
         hireEmployees(company);
         printHighestSalaries(company);
         printLowestSalaries(company);
@@ -46,6 +46,7 @@ public class Main {
         }
         for (int i = 0; i < 10; i++) {
             Employee topManager = new TopManager();
+            ((TopManager) topManager).setCompany(company);
             company.hire(topManager);
         }
         System.out.println("Добавлено сотрудников: " + company.countEmployees());
