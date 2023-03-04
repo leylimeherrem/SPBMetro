@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+
+
 public class Main {
     private static final String ADD_COMMAND = "add Василий Петров " +
             "vasily.petrov@gmail.com +79215637722";
@@ -8,6 +10,9 @@ public class Main {
     private static final String COMMAND_ERROR = "Wrong command! Available command examples: \n" +
             COMMAND_EXAMPLES;
     private static final String helpText = "Command examples:\n" + COMMAND_EXAMPLES;
+
+
+
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

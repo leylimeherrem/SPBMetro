@@ -5,15 +5,24 @@ public class Station implements Comparable<Station>
     private Line line;
     private String name;
 
-    public Station(String name, Line line)
-    {
+    public Station(String name, Line line) {
         this.name = name;
-        this.line = line;
+        setLine(line);
     }
 
     public Line getLine()
     {
+        if (line == null) {
+            throw new IllegalStateException("Line has not been set for this station");
+        }
         return line;
+    }
+
+    public void setLine(Line line) {
+        if (line == null) {
+            throw new IllegalArgumentException("Line cannot be null");
+        }
+        this.line = line;
     }
 
     public String getName()

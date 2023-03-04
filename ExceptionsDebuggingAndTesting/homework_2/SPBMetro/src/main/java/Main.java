@@ -5,16 +5,19 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    private static final String DATA_FILE = "src/main/resources/map.json";
+    private static final String DATA_FILE = "ExceptionsDebuggingAndTesting/homework_2/SPBMetro/src/main/resources/map.json";
+
+
     private static Scanner scanner;
 
-    private static StationIndex stationIndex;
+    static StationIndex stationIndex;
 
     public static void main(String[] args) {
         RouteCalculator calculator = getRouteCalculator();
@@ -97,7 +100,7 @@ public class Main {
                 int lineNumber = ((Long) itemObject.get("line")).intValue();
                 String stationName = (String) itemObject.get("station");
 
-                Station station = stationIndex.getStation(stationName, lineNumber);
+                Station station = stationIndex.getStation(stationName);
                 if (station == null) {
                     throw new IllegalArgumentException("core.Station " +
                             stationName + " on line " + lineNumber + " not found");
@@ -137,7 +140,10 @@ public class Main {
     private static String getJsonFile() {
         StringBuilder builder = new StringBuilder();
         try {
-            List<String> lines = Files.readAllLines(Paths.get(DATA_FILE));
+
+            Path pathToFile = Paths.get(DATA_FILE);
+            System.out.println(pathToFile.toAbsolutePath());
+            List<String> lines = Files.readAllLines(pathToFile);
             lines.forEach(line -> builder.append(line));
         } catch (Exception ex) {
             ex.printStackTrace();

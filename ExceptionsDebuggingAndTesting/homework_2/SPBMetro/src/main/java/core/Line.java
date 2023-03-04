@@ -28,7 +28,11 @@ public class Line implements Comparable<Line>
 
     public void addStation(Station station)
     {
+        if (station.getLine() == null) {
+            throw new IllegalArgumentException("Line has not been set for this station");
+        }
         stations.add(station);
+
     }
 
     public List<Station> getStations()

@@ -6,16 +6,22 @@ import java.util.List;
 import java.util.Set;
 
 public class RouteCalculator {
+    private static final String DATA_FILE = "ExceptionsDebuggingAndTesting/homework_2/SPBMetro/src/main/resources/map.json";
     private final StationIndex stationIndex;
 
     private static final double INTER_STATION_DURATION = 2.5;
     private static final double INTER_CONNECTION_DURATION = 3.5;
 
     public RouteCalculator(StationIndex stationIndex) {
+
         this.stationIndex = stationIndex;
     }
 
     public List<Station> getShortestRoute(Station from, Station to) {
+        if (from == null || to == null) {
+            throw new IllegalArgumentException("from or to cannot be null");
+        }
+
         List<Station> route = getRouteOnTheLine(from, to);
         if (route != null) {
             return route;
@@ -29,6 +35,9 @@ public class RouteCalculator {
         route = getRouteWithTwoConnections(from, to);
         return route;
     }
+
+
+
 
     public static double calculateDuration(List<Station> route) {
         double duration = 0;
@@ -45,8 +54,8 @@ public class RouteCalculator {
     }
 
     private List<Station> getRouteOnTheLine(Station from, Station to) {
-        if (!from.getLine().equals(to.getLine())) {
-            return null;
+        if (from == null || to == null) {
+            throw new IllegalArgumentException("from or to cannot be null");
         }
         List<Station> route = new ArrayList<>();
         List<Station> stations = from.getLine().getStations();
@@ -118,7 +127,7 @@ public class RouteCalculator {
         return null;
     }
 
-    private List<Station> getRouteWithTwoConnections(Station from, Station to) {
+    public List<Station> getRouteWithTwoConnections(Station from, Station to) {
         if (from.getLine().equals(to.getLine())) {
             return null;
         }
