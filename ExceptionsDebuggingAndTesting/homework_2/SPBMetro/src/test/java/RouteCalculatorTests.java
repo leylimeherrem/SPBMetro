@@ -2,6 +2,7 @@ import core.Line;
 import core.Station;
 import junit.framework.TestCase;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -10,12 +11,12 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class RouteCalculatorTests extends TestCase {
-    private static final String DATA_FILE = "ExceptionsDebuggingAndTesting/homework_2/SPBMetro/src/main/resources/map.json";
 
     @Test
     public void testGetShortestRoute() {
         // Create station index and calculator
-        StationIndex stationIndex = new StationIndex();
+        Main.createStationIndex();
+        StationIndex stationIndex = Main.stationIndex;
         RouteCalculator calculator = new RouteCalculator(stationIndex);
 
         // Create stations for the test
