@@ -9,6 +9,7 @@ public class RouteCalculator {
     private static final String DATA_FILE = "ExceptionsDebuggingAndTesting/homework_2/SPBMetro/src/main/resources/map.json";
     private final StationIndex stationIndex;
 
+
     private static final double INTER_STATION_DURATION = 2.5;
     private static final double INTER_CONNECTION_DURATION = 3.5;
 
@@ -18,9 +19,20 @@ public class RouteCalculator {
     }
 
     public List<Station> getShortestRoute(Station from, Station to) {
+        Main.createStationIndex();
+        StationIndex stationIndex = Main.stationIndex;
+
         if (from == null || to == null) {
             throw new IllegalArgumentException("from or to cannot be null");
         }
+
+        var is = isConnected(from, to);
+
+        if(!is){
+            List<Station> route = getRouteWithOneConnection(from, to);
+        }
+
+
 
         List<Station> route = getRouteOnTheLine(from, to);
         if (route != null) {
@@ -84,7 +96,7 @@ public class RouteCalculator {
         return route;
     }
 
-    private List<Station> getRouteWithOneConnection(Station from, Station to) {
+    public List<Station> getRouteWithOneConnection(Station from, Station to) {
         if (from.getLine().equals(to.getLine())) {
             return null;
         }

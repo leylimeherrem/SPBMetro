@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 public class RouteCalculatorTests extends TestCase {
 
     @Test
-    public void testGetShortestRoute() {
+    public void testGetShortestRouteOnSameLine() {
         // Create station index and calculator
         Main.createStationIndex();
         StationIndex stationIndex = Main.stationIndex;
@@ -40,6 +40,31 @@ public class RouteCalculatorTests extends TestCase {
         Assert.assertEquals(expectedRoute, route);
     }
 
+    @Test
+    public void testGetShortestRouteWithOneConnection() {
+        // Create station index and calculator
+        Main.createStationIndex();
+        StationIndex stationIndex = Main.stationIndex;
+        RouteCalculator calculator = new RouteCalculator(stationIndex);
+
+        // Create stations for the test
+        Station from = stationIndex.getStation("Маяковская");
+        Station to = stationIndex.getStation("Горьковская");
+
+        // Expected route
+        List<Station> expectedRoute = new ArrayList<>();
+        expectedRoute.add(stationIndex.getStation("Маяковская"));
+        expectedRoute.add(stationIndex.getStation("Гостиный двор"));
+        expectedRoute.add(stationIndex.getStation("Невский проспект"));
+        expectedRoute.add(stationIndex.getStation("Горьковская"));
+
+
+        // Actual route
+        List<Station> route = calculator.getShortestRoute(from, to);
+
+        // Check that the route is correct
+        Assert.assertEquals(expectedRoute, route);
+    }
 
 
     @Test
