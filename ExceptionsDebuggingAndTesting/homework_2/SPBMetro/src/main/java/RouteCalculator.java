@@ -26,29 +26,30 @@ public class RouteCalculator {
             throw new IllegalArgumentException("from or to cannot be null");
         }
 
-        var is = isConnected(from, to);
+        List<Station> route = null;
 
-        if(!is){
-            List<Station> route = getRouteWithOneConnection(from, to);
+        if (from.getLine().equals(to.getLine())) {
+            route = getRouteOnTheLine(from, to);
         }
 
+        if (route == null) {
+            List<Station> routeWithOneConnection = getRouteWithOneConnection(from, to);
 
-
-        List<Station> route = getRouteOnTheLine(from, to);
-        if (route != null) {
-            return route;
+            if (routeWithOneConnection != null) {
+                route = routeWithOneConnection;
+            }
         }
 
-        route = getRouteWithOneConnection(from, to);
-        if (route != null) {
-            return route;
+        if (route == null) {
+            List<Station> routeWithTwoConnections = getRouteWithTwoConnections(from, to);
+
+            if (routeWithTwoConnections != null) {
+                route = routeWithTwoConnections;
+            }
         }
 
-        route = getRouteWithTwoConnections(from, to);
         return route;
     }
-
-
 
 
     public static double calculateDuration(List<Station> route) {
@@ -140,6 +141,8 @@ public class RouteCalculator {
     }
 
     public List<Station> getRouteWithTwoConnections(Station from, Station to) {
+        Main.createStationIndex();
+        StationIndex stationIndex = Main.stationIndex;
         if (from.getLine().equals(to.getLine())) {
             return null;
         }
