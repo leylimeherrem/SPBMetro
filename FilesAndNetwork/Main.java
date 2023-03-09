@@ -38,16 +38,19 @@ public class Main {
 //            }
 //        }
 
-        String filePath = "/Users/leylimeherrem/IdeaProjects/java_basics/java_basics5/FilesAndNetwork/data/dates-1.csv";
-        CSVFilesParsing parser = new CSVFilesParsing(filePath);
-        try {
-            List<CSVData> dataList = parser.parse();
-            for (CSVData data : dataList) {
-                System.out.println(data.getName() + " - " + data.getDate());
-            }
-        } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
-        }
+//        String filePath = "/Users/leylimeherrem/IdeaProjects/java_basics/java_basics5/FilesAndNetwork/data/dates-1.csv";
+//        CSVFilesParsing parser = new CSVFilesParsing(filePath);
+//        try {
+//            List<CSVData> dataList = parser.parse();
+//            for (CSVData data : dataList) {
+//                System.out.println(data.getName() + " - " + data.getDate());
+//            }
+//        } catch (IOException e) {
+//            System.out.println("Error reading file: " + e.getMessage());
+//        }
+
+
+
     }
 
 }
