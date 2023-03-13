@@ -11,8 +11,8 @@ import java.io.IOException;
 
 public class WritingJsonFiles {
     public static void main(String[] args) throws IOException {
-        String filePath = "/Users/leylimeherrem/IdeaProjects/java_basics/java_basics5/FilesAndNetwork/data/code.html";
-        String jsonFilePath = "/Users/leylimeherrem/IdeaProjects/java_basics/java_basics5/FilesAndNetwork/data/parser.json";
+        String filePath = "/Users/leylimeherrem/IdeaProjects/java_basics/java_basics5/FilesAndNetwork/src/main/resources/code.html";
+        String jsonFilePath = "/Users/leylimeherrem/IdeaProjects/java_basics/java_basics5/FilesAndNetwork/src/main/resources/parser.json";
 
         Document doc = Jsoup.parse(new File(filePath), "UTF-8");
         Elements lines = doc.select("span[data-line]");

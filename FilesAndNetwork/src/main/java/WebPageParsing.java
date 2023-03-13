@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class WebPageParsing {
-    public static String htmlFile = parseFile("FilesAndNetwork/data/code.html");
+    public static String htmlFile = parseFile("/Users/leylimeherrem/IdeaProjects/java_basics/java_basics5/FilesAndNetwork/src/main/resources/code.html");
     public static Document doc = Jsoup.parse(htmlFile);
 
 

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonFilesParsing {
-    public static final String DATA_FILE = "/Users/leylimeherrem/IdeaProjects/java_basics/java_basics5/FilesAndNetwork/data/depths-1.json";
+    public static final String DATA_FILE = "/Users/leylimeherrem/IdeaProjects/java_basics/java_basics5/FilesAndNetwork/src/main/resources/depths-1.json";
 
     public static JSONArray getJsonFile() {
         try {
